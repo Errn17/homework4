@@ -8,6 +8,8 @@ var answerButtons = document.getElementById("answer-btn");
 var messageText = document.getElementById("message");
 var shuffleQuestions;
 var currentQuestionIndex;
+var scoreBoard = document.getElementById("score-counter");
+let score = 0;
 //var correct = 0;
 
 //eventlistener listening for the user to click start for the quiz to begin, which will then run the start game function
@@ -32,13 +34,13 @@ function startGame() {
   setNextQuestion();
 }
 
-//this runs the function showing the random question to the user, and will target another random question once the next button is clicked
+//this runs the function showing the random question to the user, and will target another random question once the next button is clicked resetting the whole page
 function setNextQuestion() {
   resetQuestion();
   showQuestion(shuffleQuestions[currentQuestionIndex]);
 }
 
-//This function targets the declared questions and displays them
+//This function targets the declared questions and displays them as well as the answers that go a long
 function showQuestion(question) {
   questionElement.innerText = question.question;
   question.answers.forEach((answer) => {
@@ -53,12 +55,14 @@ function showQuestion(question) {
   });
 }
 
+//this function resets the question once the next button is clicked, then rehides the next button until an answer is chosen
 function resetQuestion() {
   nextButton.classList.add("hide");
   while (answerButtons.firstChild)
     [answerButtons.removeChild(answerButtons.firstChild)];
 }
 
+//
 function selectAnswer(e) {
   var selectBtn = e.target;
   var correct = selectBtn.dataset.correct;
@@ -77,6 +81,7 @@ function selectAnswer(e) {
 function setStatusClass(element, correct) {
   if (correct) {
     alert("correct");
+    score = score + 1;
     resetQuestion();
   } else {
     alert("wrong");
@@ -101,7 +106,7 @@ var questions = [
   {
     question: "What does HTML stand for?",
     answers: [
-      { text: "Hyper Text Meida Language", correct: false },
+      { text: "Hyper Text Media Language", correct: false },
       { text: "Nothing its just HTML", correct: false },
       { text: "Hyper Text Markup Language", correct: true },
       { text: "How To Make Lemonade", correct: false },
