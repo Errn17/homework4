@@ -8,6 +8,7 @@ var answerButtons = document.getElementById("answer-btn");
 var messageText = document.getElementById("message");
 var shuffleQuestions;
 var currentQuestionIndex;
+//var correct = 0;
 
 //eventlistener listening for the user to click start for the quiz to begin, which will then run the start game function
 startButton.addEventListener("click", startGame);
@@ -37,6 +38,7 @@ function setNextQuestion() {
   showQuestion(shuffleQuestions[currentQuestionIndex]);
 }
 
+//This function targets the declared questions and displays them
 function showQuestion(question) {
   questionElement.innerText = question.question;
   question.answers.forEach((answer) => {
@@ -71,11 +73,14 @@ function selectAnswer(e) {
     startButton.classList.remove("hide");
   }
 }
+
 function setStatusClass(element, correct) {
   if (correct) {
     alert("correct");
+    setNextQuestion();
   } else {
     alert("wrong");
+    setNextQuestion();
   }
 }
 
@@ -98,7 +103,7 @@ var questions = [
     answers: [
       { text: "Hyper Text Meida Language", correct: false },
       { text: "Nothing its just HTML", correct: false },
-      { text: "Hype Text Markup Language", correct: true },
+      { text: "Hyper Text Markup Language", correct: true },
       { text: "How To Make Lemonade", correct: false },
     ],
   },
