@@ -77,10 +77,10 @@ function selectAnswer(e) {
 function setStatusClass(element, correct) {
   if (correct) {
     alert("correct");
-    setNextQuestion();
+    resetQuestion();
   } else {
     alert("wrong");
-    setNextQuestion();
+    resetQuestion();
   }
 }
 
