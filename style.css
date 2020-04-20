@@ -45,3 +45,9 @@ body {
 .start-message {
   text-align: center;
 }
+
+.btn-outline-secondary {
+  border-radius: 5px;
+  padding: 5px 10px;
+  outline: none;
+}
